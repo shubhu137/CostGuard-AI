@@ -2,6 +2,7 @@ FROM node:18-alpine
 
 # Hugging Face Spaces strictly maps its traffic through port 7860
 ENV PORT=7860
+ENV NODE_ENV=production
 EXPOSE 7860
 
 WORKDIR /app
