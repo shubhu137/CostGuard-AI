@@ -45,8 +45,8 @@ export function useRealtimeData<T>(
 
   const fetchData = useCallback(async () => {
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "";
-      const fullUrl = url.startsWith("/") ? `${baseUrl}${url}` : url;
+      // Reverted to native unified routing for Hugging Face
+      const fullUrl = url.startsWith("/") ? url : `/${url}`;
       const res = await fetch(fullUrl, { cache: "no-store" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const json = await res.json();

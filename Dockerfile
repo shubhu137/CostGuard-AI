@@ -1,21 +1,22 @@
 FROM node:18-alpine
 
-# Hugging Face requires the application to listen precisely on port 7860
+# Hugging Face Spaces strictly maps its traffic through port 7860
 ENV PORT=7860
 EXPOSE 7860
 
 WORKDIR /app
 
-# We are only deploying the Backend API to Hugging Face
-# so we copy only the backend dependency file.
-COPY backend/package*.json ./
+# Copy root Next.js dependencies
+COPY package*.json ./
+
+# Install dependecies
 RUN npm install
 
-# Copy all the backend logic
-COPY backend/ .
+# Copy all the Next.js Fullstack code
+COPY . .
 
-# Compile the TypeScript files into the dist/ directory
+# Compile Next.js build
 RUN npm run build
 
-# Start the Express REST API
+# Start the unified Next.js FullStack Server on port 7860
 CMD ["npm", "start"]
