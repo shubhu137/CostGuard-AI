@@ -78,7 +78,7 @@ export default function SecurityPage() {
   const [fixedIds, setFixedIds] = useState<Set<string>>(new Set());
 
   const safeIssues = issues || [];
-  const regions = useMemo(() => [...new Set(safeIssues.map((i) => i.region))], [safeIssues]);
+  const regions = useMemo(() => Array.from(new Set(safeIssues.map((i) => i.region))), [safeIssues]);
 
   const filtered = useMemo(() => {
     let result = safeIssues.filter((i) => !fixedIds.has(i.id));
