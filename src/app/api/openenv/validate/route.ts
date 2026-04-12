@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   // Heartbeat endpoint for OpenEnv validator
   return NextResponse.json({

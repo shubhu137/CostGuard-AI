@@ -4,7 +4,7 @@ import time
 from openai import OpenAI
 
 # Required Environment Variables from OpenEnv Checklist
-API_BASE_URL = os.getenv("API_BASE_URL", "https://shubhu137-costguard-api.hf.space")
+API_BASE_URL = os.getenv("API_BASE_URL", "https://shubhu137-costguard-ai.hf.space")
 MODEL_NAME = os.getenv("MODEL_NAME", "gpt-4o")
 HF_TOKEN = os.getenv("HF_TOKEN") # No default for token per checklist
 
@@ -15,7 +15,7 @@ def run_openenv_inference():
     # Initialize mandated OpenAI client pointing to our unified backend
     # Note: We must point to /v1 suffix for standard OpenAI library compatibility
     client = OpenAI(
-        base_url=f"{API_BASE_URL}/v1" if not API_BASE_URL.endswith("/v1") else API_BASE_URL,
+        base_url=f"{API_BASE_URL.rstrip('/')}/v1",
         api_key=HF_TOKEN if HF_TOKEN else "costguard-mock-key"
     )
 

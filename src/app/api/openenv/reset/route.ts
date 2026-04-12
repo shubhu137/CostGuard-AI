@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST() {
   // In our deterministic time-slot engine, 'reset' simply returns success
   // to satisfy the OpenEnv automated grader requirements.
